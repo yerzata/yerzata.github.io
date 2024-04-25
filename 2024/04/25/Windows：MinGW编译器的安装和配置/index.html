@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Windows：MinGW编译器的安装和配置 | Learn and live</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="1、MinGW介绍MinGW（Minimalist GNU on Windows）实际上是GCC在Windows平台上的移植版本，因此可以将源代码编译为可在 Windows 中运行的可执行程序。MinGW是，主要用于在Windows上本地编译C和C++代码。  目前适用于 Windows 平台、受欢迎的 GCC 移植版主要有 2 种，分别为 MinGW 和 Cygwin。其中： MinGW 侧重于">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows：MinGW编译器的安装和配置">
+<meta property="og:url" content="https://yerzata.github.io/2024/04/25/Windows%EF%BC%9AMinGW%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Learn and live">
+<meta property="og:description" content="1、MinGW介绍MinGW（Minimalist GNU on Windows）实际上是GCC在Windows平台上的移植版本，因此可以将源代码编译为可在 Windows 中运行的可执行程序。MinGW是，主要用于在Windows上本地编译C和C++代码。  目前适用于 Windows 平台、受欢迎的 GCC 移植版主要有 2 种，分别为 MinGW 和 Cygwin。其中： MinGW 侧重于">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692674344122.png">
+<meta property="og:image" content="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692674777924.png">
+<meta property="og:image" content="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692674793945.png">
+<meta property="og:image" content="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692674846199.png">
+<meta property="og:image" content="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692675129933.png">
+<meta property="og:image" content="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692675199055.png">
+<meta property="og:image" content="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692693959356.png">
+<meta property="og:image" content="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692675410414.png">
+<meta property="og:image" content="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692698300912.png">
+<meta property="og:image" content="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692675512853.png">
+<meta property="og:image" content="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692675528090.png">
+<meta property="og:image" content="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692675556189.png">
+<meta property="og:image" content="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/image-20230822181721360.png">
+<meta property="og:image" content="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/image-20230822181849566.png">
+<meta property="og:image" content="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/image-20230822182303099.png">
+<meta property="article:published_time" content="2024-04-25T14:47:03.000Z">
+<meta property="article:modified_time" content="2024-04-25T14:48:40.683Z">
+<meta property="article:author" content="xiaoye">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692674344122.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Learn and live" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Learn and live</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yerzata.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Windows：MinGW编译器的安装和配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/25/Windows%EF%BC%9AMinGW%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time class="dt-published" datetime="2024-04-25T14:47:03.000Z" itemprop="datePublished">2024-04-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/language/">language</a>►<a class="article-category-link" href="/categories/language/C/">C</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Windows：MinGW编译器的安装和配置
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1、MinGW介绍"><a href="#1、MinGW介绍" class="headerlink" title="1、MinGW介绍"></a>1、MinGW介绍</h2><p>MinGW（Minimalist GNU on Windows）实际上是GCC在Windows平台上的移植版本，因此可以将源代码编译为可在 Windows 中运行的可执行程序。MinGW是，主要用于在Windows上本地编译C和C++代码。</p>
+<blockquote>
+<p>目前适用于 Windows 平台、受欢迎的 GCC 移植版主要有 2 种，分别为 MinGW 和 Cygwin。<br>其中：</p>
+<p>MinGW 侧重于服务 Windows 用户可以使用 GCC 编译环境，是真正的GCC移植，相比后者体积更小，使用更方便；<br>Cygwin 只是提供一个类unix的环境内部是原生的GCC，借助它不仅可以在 Windows 平台上使用 GCC 编译器，理论上可以运行 Linux 平台上所有的程序；</p>
+<p>Cygwin 只是提供一个类unix的环境内部是原生的GCC。</p>
+<p>如果读者仅需要在 Windows 平台上使用 GCC，可以使用 MinGW 或者 Cygwin；除此之外，如果还有更高的需求（例如运行 POSIX 应用程序），就只能选择安装 Cygwin。</p>
+</blockquote>
+<h2 id="2、下载与安装"><a href="#2、下载与安装" class="headerlink" title="2、下载与安装"></a>2、下载与安装</h2><h3 id="2-1-下载"><a href="#2-1-下载" class="headerlink" title="2.1 下载"></a>2.1 下载</h3><p>下载地址：<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/mingw/files/">https://sourceforge.net/projects/mingw/files/</a></p>
+<p>点击“Download Latest Version”即可</p>
+<p><img src="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692674344122.png" alt="1692674344122"></p>
+<h3 id="2-2-安装"><a href="#2-2-安装" class="headerlink" title="2.2 安装"></a>2.2 安装</h3><p>下载完成后，会得到一个名为 mingw-get-setup.exe 的安装包，双击打开它，可以看到如下的对话框：</p>
+<p><img src="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692674777924.png" alt="1692674777924"></p>
+<p>直接点击“Install”，进入下面的对话框：</p>
+<p><img src="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692674793945.png" alt="1692674793945"></p>
+<p>读者可根据自己操作系统的实际情况，自定义 MinGW 的安装位置（<code>建议安装到非C盘的指定目录下</code>），然后点击“continue”，进入下面的对话框：</p>
+<p><img src="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692674846199.png" alt="1692674846199"></p>
+<p>​	进入安装 MinGW 配置器的界面，耐心等待安装完成（显示 100%）即可。</p>
+<p><img src="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692675129933.png" alt="1692675129933"></p>
+<p>安装完成之后，继续点击“continue”，进入下面的对话框，这是一个名为 “<code>MinGW Installer Manager</code>” 的软件，借助它，我们可以随时根据需要修改 GCC 编译器的配置。</p>
+<p><img src="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692675199055.png" alt="1692675199055"></p>
+<p>常见的安装包介绍如下。</p>
+<table>
+<thead>
+<tr>
+<th>安装包名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mingw32-binutils</td>
+<td>用于编译生成的 .o 文件的链接、汇编、生成静态库等</td>
+</tr>
+<tr>
+<td>mingw32-gcc</td>
+<td>核心的 C 编译器</td>
+</tr>
+<tr>
+<td>mingw32-gcc-ada</td>
+<td>Ada 编译器</td>
+</tr>
+<tr>
+<td>mingw32-gcc-fortran</td>
+<td>Fortran 编译器</td>
+</tr>
+<tr>
+<td>mingw32-gcc-g++</td>
+<td>C++ 编译器</td>
+</tr>
+<tr>
+<td>mingw32-gcc-objc</td>
+<td>Objective-C 编译器</td>
+</tr>
+<tr>
+<td>mingw32-libgcc</td>
+<td>C 编译器编译出来的程序的运行库</td>
+</tr>
+</tbody></table>
+<p>其中minw32-gcc-g++支持C++编译和minw32-gcc支持C编译。</p>
+<p><img src="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692693959356.png" alt="1692693959356"></p>
+<p>为使 GCC 同时支持编译 <code>C</code> 语言和 <code>C++</code>，需勾选上图中标注的 2 项。选中其中一项，鼠标右键点击，选择“Mark for Installation”，如图所示。</p>
+<p><img src="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692675410414.png" alt="1692675410414"></p>
+<p>标记完以后如图所示。</p>
+<p><img src="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692698300912.png" alt="1692698300912"></p>
+<blockquote>
+<p>GCC 还支持其它编程语言，读者可借助此配置器，随时根据需要安装自己需要的编译环境。</p>
+</blockquote>
+<p>勾选完成后，在菜单栏中选择 <code>Installation -&gt; Apply Changes</code>，</p>
+<p><img src="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692675512853.png" alt="1692675512853"></p>
+<p>弹出如下对话框：</p>
+<p><img src="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692675528090.png" alt="1692675528090"></p>
+<p>选择“Apply”。然后耐心等待，直至安装成功，即可关闭此界面。</p>
+<p><img src="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/1692675556189.png" alt="1692675556189"></p>
+<h2 id="3、配置：path环境变量"><a href="#3、配置：path环境变量" class="headerlink" title="3、配置：path环境变量"></a>3、配置：path环境变量</h2><p>在安装完成的基础上，我们需要手动配置 PATH 环境变量。</p>
+<p>1）依次 <code>右击计算机（我的电脑） -&gt; 属性 -&gt; 高级系统设置 -&gt; 环境变量</code>，例如我将其安装到了C:\MinGW文件夹中，因此 PATH 环境变量的设置如下：</p>
+<img src="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/image-20230822181721360.png" alt="image-20230822181721360" style="zoom:67%;" />
+
+<p><img src="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/image-20230822181849566.png" alt="image-20230822181849566"></p>
+<p>2）打开命令行窗口（通过在搜索栏中执行 cmd 指令即可），输入<code>gcc -v</code>指令，如果输出 GCC 编译器的具体信息，则表示安装成功，例如：</p>
+<p><img src="https://pic-1307534554.cos.ap-chongqing.myqcloud.com/img/image-20230822182303099.png" alt="image-20230822182303099"></p>
+<p>通过上面的安装，我们就可以在当前 Windows 平台上编译、运行 C 或者 C++ 程序了。</p>
+<p>因为 MinGW-w64 本来就是将 GCC 移植到 Windows 上的产物，所以操作方式和 GCC 一样，只是在 Linux 下命令是被键入到“终端”中，而 Windows 下则是被键入到“命令提示符”里。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yerzata.github.io/2024/04/25/Windows%EF%BC%9AMinGW%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/" data-id="clvfd08e80006ebd55x9yfgb7" data-title="Windows：MinGW编译器的安装和配置" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/04/25/C%E5%BC%80%E5%8F%91%E5%88%A9%E5%99%A8%EF%BC%9ACLion%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C开发利器：CLion的使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/C/">C</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/C/">C++</a><span class="category-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/04/25/Windows%EF%BC%9AMinGW%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">Windows：MinGW编译器的安装和配置</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/25/C%E5%BC%80%E5%8F%91%E5%88%A9%E5%99%A8%EF%BC%9ACLion%E7%9A%84%E4%BD%BF%E7%94%A8/">C开发利器：CLion的使用</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/25/%E7%AC%AC01%E7%AB%A0-C%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8/">第01章_C语言入门</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/21/About-C/">About C++</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/21/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 xiaoye<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
